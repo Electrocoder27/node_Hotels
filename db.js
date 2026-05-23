@@ -1,7 +1,9 @@
 //it is the connect database to server........
 const mongoose = require("mongoose");
-const mongourl = "mongodb://127.0.0.1:27017/hotels";
-
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+//const mongourl = "mongodb://127.0.0.1:27017/hotels";
+const mongourl = process.env.DB_URL ;
 // mongoose.connect(mongourl,{
 //     useNewUrlParser : true ,
 //     useUnifiedTopology : true ,
