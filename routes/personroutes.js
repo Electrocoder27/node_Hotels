@@ -1,6 +1,7 @@
 const express = require('express') ;
 const router = express.Router() ;
 const person = require('../models/person') ;
+const passport = require('passport');
 
 
 router.post('/', async (req,res) => {
@@ -18,7 +19,7 @@ router.post('/', async (req,res) => {
   }
 });
   
-router.get('/',async(req,res) => {
+router.get('/',passport.authenticate('local',{session:false}),async(req,res) => {
   try{
     const data = await person.find() ;
     console.log('data fetched') ;
@@ -30,7 +31,7 @@ router.get('/',async(req,res) => {
   }
 })
 
-router.get('/:workType',async(req,res) =>{
+router.get('/:workType',passport.authenticate('local',{session:false}),async(req,res) =>{
    try{
     const workType = req.params.workType ;
 
